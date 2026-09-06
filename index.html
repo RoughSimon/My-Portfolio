@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Press & Paper | Thoughtful print, beautifully made</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #16231f;
+			--paper: #f5f0e8;
+			--paper-deep: #e8dfd2;
+			--coral: #e56b4d;
+			--coral-dark: #b84934;
+			--sage: #aab8a0;
+			--white: #fffdf9;
+			--line: rgba(22, 35, 31, 0.16);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: linear-gradient(90deg, var(--paper) 0 50%, var(--white) 50% 100%) top center / 100% 900px no-repeat, var(--paper);
+			font-family: "DM Sans", sans-serif;
+		}
+		a { color: inherit; text-decoration: none; }
+		.page-shell { max-width: 1380px; margin: 0 auto; padding: 0 34px; }
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 24px 0;
+			border-bottom: 1px solid var(--line);
+		}
+		.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .03em; }
+		.brand-mark {
+			display: block; width: 37px; height: 37px; overflow: hidden;
+			background: var(--coral); border-radius: 50%;
+		}
+		.brand-mark img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; }
+		.nav { display: flex; gap: 30px; font-size: 14px; font-weight: 700; }
+		.nav a { transition: color .2s ease; }
+		.nav a:hover { color: var(--coral-dark); }
+		.eyebrow { color: var(--coral-dark); font-family: "DM Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
+
+		.hero {
+			display: grid; grid-template-columns: 1.06fr .94fr; gap: 6vw; align-items: center;
+			min-height: 650px; padding: 72px 0 84px;
+		}
+		.hero h1 {
+			max-width: 730px; margin: 18px 0 22px; font-family: "Fraunces", serif;
+			font-size: clamp(54px, 7.2vw, 105px); line-height: .94; letter-spacing: -.045em; font-weight: 600;
+		}
+		.hero h1 em { color: var(--coral); font-style: normal; }
+		.hero-copy { max-width: 465px; color: #52605a; font-size: 18px; line-height: 1.6; }
+		.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+		.button {
+			display: inline-flex; align-items: center; gap: 10px; padding: 15px 20px; border: 1px solid var(--ink);
+			border-radius: 999px; font-size: 14px; font-weight: 700; transition: transform .2s ease, background .2s ease;
+		}
+		.button:hover { transform: translateY(-3px); }
+		.button.primary { color: var(--white); background: var(--ink); }
+		.button.primary:hover { background: var(--coral-dark); }
+		.button.secondary { background: transparent; }
+		.button.secondary:hover { background: var(--white); }
+		.arrow { font-size: 18px; line-height: 0; }
+
+		.hero-art { position: relative; min-height: 460px; }
+		.print-sheet {
+			position: absolute; inset: 18px 30px 24px 15px; overflow: hidden; padding: 35px;
+			color: var(--ink); background: var(--white); transform: rotate(-5deg);
+			box-shadow: 18px 20px 0 var(--sage);
+		}
+		.print-sheet::before { content: ""; position: absolute; inset: 0; opacity: .08; background-image: radial-gradient(var(--ink) 1px, transparent 1px); background-size: 10px 10px; }
+		.print-sheet::after { content: ""; position: absolute; right: 12%; bottom: 12%; width: 48%; height: 42%; border: 8px solid var(--white); background: url("https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=85") center / cover; box-shadow: 0 8px 18px rgba(22, 35, 31, .2); transform: rotate(7deg); }
+		.sheet-content { position: relative; z-index: 1; height: 100%; border: 1px solid rgba(22, 35, 31, .35); padding: 25px; display: flex; flex-direction: column; justify-content: space-between; }
+		.sheet-content strong { font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .15em; }
+		.sheet-content h2 { max-width: 360px; margin: 0; font-family: "Fraunces", serif; font-size: clamp(43px, 5vw, 70px); line-height: .88; letter-spacing: -.04em; }
+		.sheet-footer { display: flex; justify-content: space-between; align-items: end; font-size: 12px; }
+		.stamp { display: grid; place-items: center; width: 74px; height: 74px; border: 1px solid var(--ink); border-radius: 50%; font-family: "DM Mono", monospace; font-size: 10px; text-align: center; transform: rotate(12deg); }
+
+		.social-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.social-card { min-width: 0; min-height: 150px; padding: 27px 25px; border-right: 1px solid var(--line); }
+		.social-card:last-child { border-right: 0; }
+		.social-card h3 { margin: 16px 0 5px; font-size: 16px; }
+		.social-card p { margin: 0; color: #68746d; font-size: 14px; }
+		.social-card .social-icon { font-family: "Fraunces", serif; font-size: 27px; }
+		.social-card.feature { color: var(--white); background: var(--ink); }
+		.social-card.feature p { color: #bec7c0; }
+
+		.catalog { padding: 105px 0 120px; }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+		.section-heading h2 { margin: 10px 0 0; font-family: "Fraunces", serif; font-size: clamp(42px, 5vw, 66px); line-height: .95; letter-spacing: -.04em; }
+		.section-heading p { max-width: 310px; margin: 0 0 5px; color: #68746d; font-size: 14px; line-height: 1.55; }
+		.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+		.product { display: flex; flex-direction: column; overflow: hidden; background: var(--white); border: 1px solid var(--line); transition: transform .25s ease, box-shadow .25s ease; }
+		.product:hover { transform: translateY(-6px); box-shadow: 8px 10px 0 var(--sage); }
+		.product-image { position: relative; display: grid; flex: 0 0 245px; place-items: center; height: 245px; color: var(--ink); font-family: "Fraunces", serif; font-size: 54px; }
+		.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+		.product:nth-child(1) .product-image { background: #dfb6a7; }
+		.product:nth-child(2) .product-image { background: #d4d9c6; }
+		.product:nth-child(3) .product-image { background: #e9c97a; }
+		.product:nth-child(4) .product-image { background: #bdcbd5; }
+		.product:nth-child(5) .product-image { background: #e0b6c0; }
+		.product:nth-child(6) .product-image { background: #c8c1b2; }
+		.product-image span { padding: 22px 30px; border: 2px solid currentColor; transform: rotate(-7deg); }
+		.product-info { position: relative; z-index: 2; display: block; flex: 0 0 auto; min-height: 86px; padding: 19px 20px 22px; background: var(--white); border-top: 1px solid var(--line); visibility: visible; opacity: 1; }
+		.product-info h3 { margin: 0 0 5px; color: var(--ink); font-size: 16px; font-weight: 700; }
+		.product-info p { margin: 0; color: #34423c; font-size: 13px; font-weight: 600; }
+		.price { font-family: "DM Mono", monospace; font-size: 13px; white-space: nowrap; }
+
+		footer { padding: 35px 0; color: #dce3db; background: var(--ink); }
+		.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+		footer p { margin: 0; font-size: 13px; }
+		.footer-links { display: flex; gap: 22px; font-size: 13px; }
+		.reveal { animation: rise .75s both; }
+		.delay { animation-delay: .14s; }
+		@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 800px) {
+			body { background: var(--paper); }
+			.page-shell { padding: 0 20px; }
+			.nav { gap: 14px; font-size: 12px; }
+			.hero { grid-template-columns: 1fr; gap: 30px; padding-top: 55px; }
+			.hero-art { min-height: 390px; }
+			.social-strip { grid-template-columns: repeat(2, 1fr); }
+			.social-card:nth-child(2) { border-right: 0; }
+			.social-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+			.product-grid { grid-template-columns: repeat(2, 1fr); }
+			.section-heading { display: block; }
+			.section-heading p { margin-top: 18px; }
+		}
+		@media (max-width: 500px) {
+			.brand { font-size: 14px; }
+			.nav a:first-child { display: none; }
+			.hero h1 { font-size: 56px; }
+			.hero-art { min-height: 330px; }
+			.print-sheet { inset: 12px 14px 20px 5px; padding: 20px; }
+			.sheet-content { padding: 18px; }
+			.sheet-content h2 { font-size: 45px; }
+			.product-grid { grid-template-columns: 1fr; }
+			.footer-inner { display: block; }
+			.footer-links { margin-top: 16px; }
+		}
+	</style>
+</head>
+<body>
+	<header class="page-shell topbar">
+		<a class="brand" href="#top" aria-label="Likha by Vanessa home"><span class="brand-mark"><img src="629349027_890146373780084_3406069034692437981_n.jpg" alt="Likha by Vanessa logo"></span>Likha by Vanessa</a>
+		<nav class="nav" aria-label="Main navigation"><a href="#contact">Contact</a><a href="#products">Products</a></nav>
+	</header>
+
+	<main id="top">
+		<section class="page-shell hero">
+			<div class="reveal">
+				<span class="eyebrow">Small studio · big impression</span>
+				<h1>Make it <em>physical.</em></h1>
+				<p class="hero-copy">Thoughtful print for brands, events, and everyday moments. We turn good ideas into pieces people want to hold on to.</p>
+				<div class="actions"><a class="button primary" href="#products">View products <span class="arrow">&#8595;</span></a><a class="button secondary" href="mailto:hello@pressandpaper.co">Start a project <span class="arrow">&#8599;</span></a></div>
+			</div>
+			<div class="hero-art reveal delay" aria-label="A coral printed poster preview">
+				<div class="print-sheet"><div class="sheet-content"><strong>PRESS / 2026</strong><h2>PRINT<br>WITH<br>PURPOSE</h2><div class="sheet-footer"><span>Made slowly<br>in small batches</span><span class="stamp">GOOD<br>THINGS<br>PRINTED</span></div></div></div>
+			</div>
+		</section>
+
+		<section class="page-shell social-strip" id="contact" aria-label="Contact and social links">
+			<div class="social-card feature"><span class="eyebrow" style="color: #eaa08e;">Come say hello</span><h3>Follow the process.</h3><p>New work, studio notes, and paper experiments.</p></div>
+			<a class="social-card" href="https://instagram.com"target="_blank" rel="noreferrer"><span class="social-icon">ig</span><h3>Instagram</h3><p>@likhabyvanessa</p></a>
+			<a class="social-card" href="vanessacruz051082@gmail.com"><span class="social-icon">@</span><h3>Email us</h3><p>vanessacruz051082@gmail.com</p></a>
+			<a class="social-card" href="https://www.facebook.com/profile.php?id=100083541877799" target="_blank" rel="noreferrer"><span class="social-icon">f</span><h3>Facebook</h3><p>likhabyvanessa</p></a>
+		</section>
+
+		<section class="page-shell catalog" id="products">
+			<div class="section-heading"><div><span class="eyebrow">The collection</span><h2>Things worth<br>printing.</h2></div><p>From first impressions to the finishing touch, these are our most-loved formats. Custom sizes and quantities are always welcome.</p></div>
+			<div class="product-grid">
+				<article class="product"><div class="product-image"><img src="777824798_1044994921628561_166859101386626267_n.jpg" alt="Example Sintra wall picture"></div><div class="product-info"><h3>Sintra Wall Picture</h3><p>Durable mounted prints</p></div></article>
+				<article class="product"><div class="product-image"><img src="images.jpg" alt="Example customized shirt"></div><div class="product-info"><h3>Customized Shirt</h3><p>Personal designs on shirts</p></div></article>
+				<article class="product"><div class="product-image"><img src="656698428_26275184548767058_8130323068153511856_n.jpg" alt="Example customized mug"></div><div class="product-info"><h3>Customized Mugs</h3><p>Custom designs for everyday use</p></div></article>
+				<article class="product"><div class="product-image"><img src="JGP_6237-Edit-Edit_1.webp" alt="Example school supplies"></div><div class="product-info"><h3>School Supplies</h3><p>Useful custom school essentials</p></div></article>
+				<article class="product"><div class="product-image"><img src="788259438_1058492776945442_5344143472483445209_n.jpg" alt="Souvenir"></div><div class="product-info"><h3>Souvenir</h3><p>Custom-designed keepsakes</p></div></article>
+				<article class="product"><div class="product-image"><img src="768247982_1037121825749204_747861520373691226_n.jpg" alt="Invitations"></div><div class="product-info"><h3>Invitations</h3><p>Custom-designed event invitations</p></div></article>
+			</div>
+		</section>
+	</main>
+
+	<footer><div class="page-shell footer-inner"><p>&copy; 2016 Likha by Vanessa</p><div class="footer-links"><a href="mailto:vanessacruz051082@gmail.com">vanessacruz051082@gmail.com</a><a href="#top">Back to top &#8593;</a></div></div></footer>
+</body>
+</html>
